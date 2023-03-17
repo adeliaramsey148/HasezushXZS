@@ -9,7 +9,6 @@ inputs:
   xla:
     description: |
       Whether or not to use a pre-build XLA docker image.
-      Note that this is a string, either "true" or "false" due to GHA limitations.
     required: false
   always-rebuild:
     description: If set to any value, always build a fresh docker image.
@@ -45,7 +44,6 @@ runs:
           echo "XLA workflow uses pre-built test image at ${XLA_IMAGE_TAG}"
           DOCKER_TAG=$(git rev-parse HEAD:.ci/docker)
           echo "docker-tag=${DOCKER_TAG}" >> "${GITHUB_OUTPUT}"
-          echo "docker-image=${DOCKER_IMAGE_BASE}:${XLA_IMAGE_TAG}" >> "${GITHUB_OUTPUT}"
         else
           DOCKER_TAG=$(git rev-parse HEAD:.ci/docker)
           echo "docker-tag=${DOCKER_TAG}" >> "${GITHUB_OUTPUT}"
